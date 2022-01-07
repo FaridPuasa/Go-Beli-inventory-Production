@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script defer src="/javascripts/fileUpload.js"></script>
+    <title>Inventory App</title>
+</head>
+<body>
+    <%- include('_sales_header') %>
+    <div class="container">
+        <h1 class="mb-4">SALE</h1>
+        <a href="/sale/new" class="btn btn-success">New Sale</a>
+
+        <% sales.forEach(sale =>  { %> 
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= sale._id %></h4>   <input type="checkbox">
+    
+                    <div class="card-text mb-2">  <strong>Description: </strong> <%= sale.salesdescription %></div>
+                      <div class="card-subtitle text-muted mb-2">
+                         <strong> Quantity on Hand:</strong> <%= sale.salesquantity %> <br>
+                         <strong> Product: </strong> <%= sale.salesproduct %> <br>
+                          <strong>  ACK Number: </strong><%= sale.salespayment %> <br>
+                              <strong>  Remarks: </strong><%= sale.salesremarks %> 
+                      </div>
+                      </div>
+                      <a href="sale/<%= sale.id %>" class="btn btn-primary">View</a>
+                      <a href="/sale/edit/<%= sale.id %>" class="btn btn-info">Edit</a>
+                      <form action="/sale/<%= sale.id %>?_method=DELETE" method="post" class="d-inline">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+        
+              </div>
+          <% }) %>
+        </div>
+
+
+</body>
+</html>

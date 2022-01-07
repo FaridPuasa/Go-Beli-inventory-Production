@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Returns</title>
+</head>
+<body>
+    <%- include('_returns_header') %>
+
+    <div class="container">
+        <h1 class="mb-4">Return</h1>
+        <a href="/return/new" class="btn btn-success">New Return</a>
+
+        <% baliks.forEach(balik =>  { %> 
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"><%= balik._id %></h4>    <input type="checkbox">
+             
+                    <div class="card-text mb-2">  <strong>Reason: </strong> <%= balik.balikreason %></div>
+                      <div class="card-subtitle text-muted mb-2">
+                         <strong> Date to Go Rush:</strong> <%= balik.balikdatetogorush %> <br>
+                         <strong> Date to Orgin: </strong> <%= balik.balikdatetoorgin %> <br>
+ 
+                      </div>
+                      <a href="return/<%= balik.id %>" class="btn btn-primary">View</a>
+                      <a href="/return/edit/<%= balik.id %>" class="btn btn-info">Edit</a>
+                      <form action="/return/<%= balik.id %>?_method=DELETE" method="post" class="d-inline">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                      </form>
+                  </div>
+              </div>
+          <% }) %>
+        </div>
+
+</body>
+</html>

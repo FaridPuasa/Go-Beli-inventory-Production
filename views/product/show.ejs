@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Inventory App</title>
+</head>
+<body>
+   
+<%- include('_header') %>
+
+   
+     <table id="producttable" class="table table-bordered">
+        
+         <tr>
+             <th>Title</th>
+             <th>Product Description</th>
+             <th>Created At</th>
+             <th>Quantity On Hand</th>
+             <th>Restock Date & Quantity</th>
+             <th>Quantity Sold</th>
+             <th>ACK Number</th>
+             <th>Remarks</th>
+             <th>Validity</th>
+         </tr>
+ 
+         <tr>
+             <td><%= product.title %></td>
+             <td><%= product.description %></td>
+             <td> <%= product.createdAt.toLocaleDateString() %></td>
+             <td> <%= product.quantityonhand %> </td>
+             <td><%= product.restock %> </td>
+             <td><%= product.sold %></td>
+             <td><%= product.payment %></td>
+             <td><%= product.remarks %> </td>
+             <td><%= product.valid %></td>
+         </tr>
+         </table>
+
+
+
+<input type="button" id="btnExport" value="Export" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+ 
+ 
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('#producttable')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("output.pdf");
+            }
+        });
+    });
+</script>
+
+    
+<a href="/" class="btn btn-secondary">All Products</a><br><br>
+<a href="/product/edit/<%= product.id %>" class="btn btn-info">Edit</a>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+    <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script defer src="/javascripts/fileUpload.js"></script>
+    <title>Inventory App</title>
+ 
+</head>
+<body>
+    <%- include('_header') %>
+  
+    <div class="container">
+ 
+        <h1 class="mb-4">GO BELI STORE INVENTORY</h1>
+        <a href="/product/new" class="btn btn-success">New Products</a>
+
+
+        <% products.forEach(product =>  { %> 
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title"> <%= product._id %></h4>    <input type="checkbox">
+                  <div class="card-text mb-2">  <strong>Description: </strong> <%= product.description %></div>
+                    <div class="card-subtitle text-muted mb-2">
+                       <strong>Created At:</strong> <%= product.createdAt.toLocaleDateString() %>  <br>
+                       <strong> Quantity on Hand:</strong> <%= product.quantityonhand %> <br>
+                       <strong> Restock Date and Quantity: </strong><%= product.restock %>   <br>  
+                            <strong>  Remarks: </strong><%= product.remarks %> <br>
+                 
+                    </div>
+
+
+                    <a href="product/<%= product.id %>" class="btn btn-primary">View</a>
+                    <a href="/product/edit/<%= product.id %>" class="btn btn-info">Edit</a>
+                    <form action="/product/<%= product.id %>?_method=DELETE" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+        </div>
+
+
+          </form>
+  
+</body>
+</html>

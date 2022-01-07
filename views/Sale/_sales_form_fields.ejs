@@ -1,0 +1,40 @@
+    <div class="form-group">
+        <label for="_id"><p style="color:black"> Number</p></label>
+        <textarea name="_id"  id="_id" class="form-control"><%= sale._id %></textarea>
+        </div>
+
+<div class="form-group">
+<label for="salesdescription"><p style="color:black">Sales Description</p></label>
+<textarea name="salesdescription" placeholder="Sales Description" id="salesdescription" class="form-control"><%= sale.salesdescription %></textarea>
+</div>
+
+<div class="form-group" id="product">
+<label for="salesproduct"><p style="color:black">Product</p></label>
+<textarea name="product" placeholder="KF Mask" id="salesproduct" class="form-control"><%= sale.salesproduct %></textarea>
+</div>
+
+<div class="form-group">
+    <label for="salesquantity"><p style="color: black">Quantity</p></label>
+<textarea name="salesquantity" id="salesquantity" placeholder="E.g. 3 pcs" class="form-control"><%= sale.salesquantity %></textarea>
+</div>
+
+<div class="form-group">
+<label for="salespriceperunit"><p style="color:black">Price / Unit</p></label>
+<textarea name="salespriceperunit" id="salespriceperunit" placeholder="E.g. $3" class="form-control"><%= sale.salespriceperunit %></textarea>
+</div>
+
+<div class="form-group">
+<label for="salespayment"><p style="color:black">ACK</p></label>
+<textarea name="salespayment" placeholder="E.g. Laila Khalid: BIBD 0968962 or Cash" id="salespayment" class="form-control"><%= sale.salespayment %></textarea>
+</div>
+
+<div class="form-group">
+<label for="salesremarks"><p style="color:black">Remarks</p></label>
+<textarea name="salesremarks" id="salesremarks" class="form-control"><%= sale.salesremarks %></textarea>
+</div>
+
+
+<a href="/sale" class="btn btn-secondary">Cancel</a>
+
+<button type="submit" class="btn btn-primary">Save</button>
+

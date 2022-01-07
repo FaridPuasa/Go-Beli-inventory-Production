@@ -1,1 +1,1 @@
-Go Beli inventory Production
+GoBeli Inventory
